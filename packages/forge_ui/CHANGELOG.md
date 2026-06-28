@@ -17,6 +17,13 @@ All notable changes to `forge_ui` are documented here.
 - Migrated every `Icons.*` usage inside the package (41 call sites across 10
   files — both internal widget glyphs and catalog examples) to `FUIIcons.*`.
 
+### Tests
+- Hardening pass: closed all 14 zero-coverage gaps (`FUIText`, `FUIBadge`,
+  `FUITag`, `FUIChip`, `FUIDivider`, `FUIAvatar`, `FUICard`, `FUIListTile`,
+  `FUIRadio`, `FUISwitch`, `FUITooltip`, plus the `FUIStatusColors` token) and
+  deepened `FUIButton` (variants, sizes, icon positions, fullWidth). Suite grew
+  36 → 73 tests, including brightness-aware token resolution.
+
 ## 0.1.0
 
 First real cut of the token-first design system — the Flutter counterpart of the

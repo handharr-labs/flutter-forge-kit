@@ -63,4 +63,87 @@ void main() {
     await tester.tap(find.byType(FUIButton));
     expect(taps, 0);
   });
+
+  testWidgets('every variant renders its label and stays tappable',
+      (tester) async {
+    for (final variant in FUIButtonVariant.values) {
+      var taps = 0;
+      await tester.pumpWidget(
+        _host(
+          FUIButton(
+            configuration: FUIButtonConfiguration(
+              label: variant.name,
+              variant: variant,
+            ),
+            onPressed: () => taps++,
+          ),
+        ),
+      );
+      expect(find.text(variant.name), findsOneWidget);
+      await tester.tap(find.text(variant.name));
+      expect(taps, 1, reason: '$variant should fire onPressed');
+    }
+  });
+
+  testWidgets('small button is shorter than medium', (tester) async {
+    await tester.pumpWidget(
+      _host(const FUIButton(
+        configuration:
+            FUIButtonConfiguration(label: 'S', size: FUIButtonSize.small),
+      )),
+    );
+    final small = tester.getSize(find.byType(FUIButton)).height;
+
+    await tester.pumpWidget(
+      _host(const FUIButton(
+        configuration: FUIButtonConfiguration(label: 'M'),
+      )),
+    );
+    final medium = tester.getSize(find.byType(FUIButton)).height;
+
+    expect(small, 32);
+    expect(medium, 48);
+  });
+
+  testWidgets('renders an icon in either position', (tester) async {
+    await tester.pumpWidget(
+      _host(const FUIButton(
+        configuration: FUIButtonConfiguration(label: 'Add', icon: FUIIcons.add),
+      )),
+    );
+    expect(find.byIcon(FUIIcons.add), findsOneWidget);
+
+    await tester.pumpWidget(
+      _host(const FUIButton(
+        configuration: FUIButtonConfiguration(
+          label: 'Add',
+          icon: FUIIcons.add,
+          iconPosition: FUIButtonIconPosition.trailing,
+        ),
+      )),
+    );
+    expect(find.byIcon(FUIIcons.add), findsOneWidget);
+  });
+
+  testWidgets('fullWidth fills its horizontal constraints', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: FUITheme(
+          tokens: FUITokens.base,
+          child: const Scaffold(
+            body: Center(
+              child: SizedBox(
+                width: 300,
+                child: FUIButton(
+                  configuration:
+                      FUIButtonConfiguration(label: 'Wide', fullWidth: true),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+    expect(tester.getSize(find.byType(FUIButton)).width, 300);
+  });
 }
