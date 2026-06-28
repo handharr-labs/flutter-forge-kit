@@ -58,14 +58,16 @@ A Melos + Dart pub workspace. One root `pubspec.yaml` lists the members; each is
 `playground/` is the one runnable host (`forge_kit_playground`), a workspace member that depends on `forge_ui` by path. It owns no UI of its own — `main.dart` boots a `MaterialApp` whose `home` is the design system's `ForgeUICatalog`.
 
 - **The catalog lives in the design system, not the host.** `ForgeUICatalog` (in `forge_ui/lib/src/catalog/`) is the gallery of every `FUI` component + token; hosts just mount it. Add a component → extend the catalog there, and every host picks it up for free.
-- Run: `cd playground && fvm flutter run` (any device), or `fvm flutter run -d chrome` for a quick look.
+- Run: `scripts/run.sh` (any device) or `scripts/run.sh -d chrome` for a quick look. The script runs the playground on the repo-pinned Flutter, forwarding extra args to `flutter run`. Equivalent: `cd playground && fvm flutter run`.
+- In VS Code, F5 uses the `playground` configs in `.vscode/launch.json`; `.vscode/settings.json` points the Dart extension at the same pinned SDK.
 - Targets generated: iOS, Android, web.
 
 ## Commands
 
-Toolchain is pinned via `fvm` (Flutter 3.27.x). Prefix with `fvm` if not on PATH.
+Toolchain is pinned per-repo via `fvm` to the latest stable Flutter (`.fvmrc` → 3.44.4), independent of the machine-global Flutter. After cloning, run `fvm install` once to materialize `.fvm/`. Always invoke Flutter as `fvm flutter …` inside this repo.
 
 ```
+fvm install                      # after clone: fetch the pinned SDK
 dart pub global activate melos   # once
 melos bootstrap                  # resolve the workspace
 melos run analyze                # flutter analyze across packages

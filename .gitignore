@@ -20,3 +20,6 @@ pubspec_overrides.yaml
 # No trailing slash so the `docs` symlink itself is ignored, not just a dir.
 docs
 .claude
+
+# FVM Version Cache
+.fvm/
