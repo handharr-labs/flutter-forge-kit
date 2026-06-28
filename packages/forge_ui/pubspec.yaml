@@ -3,7 +3,7 @@ description: >-
   Token-first design system for the Flutter Forge Kit. FUI*-prefixed widgets
   driven by *Configuration objects. Standalone — holds no domain or feature
   logic. Single base tier today (future Bronze/Silver/Gold).
-version: 0.1.0
+version: 0.2.0
 publish_to: none
 
 environment:
