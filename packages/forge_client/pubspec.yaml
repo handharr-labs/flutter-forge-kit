@@ -1,0 +1,20 @@
+name: forge_client
+description: >-
+  IO layer for the Flutter Forge Kit — ApiClient (Dio), WebSocketClient, and the
+  LocalDataSource seam. Depends on forge_core; knows nothing of any domain.
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ">=3.6.0 <4.0.0"
+
+resolution: workspace
+
+dependencies:
+  forge_core: ^0.1.0
+  dio: ^5.7.0
+  web_socket_channel: ^3.0.0
+
+dev_dependencies:
+  test: ^1.25.0
+  lints: ^4.0.0

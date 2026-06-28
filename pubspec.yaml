@@ -1,0 +1,19 @@
+name: flutter_forge_kit
+description: >-
+  Flutter Forge Kit — shared packages for Clean Architecture + BLoC apps.
+  The Flutter counterpart of the iOS and Web Forge Kits. Workspace root only;
+  no publishable code lives here.
+publish_to: none
+
+environment:
+  sdk: ">=3.6.0 <4.0.0"
+
+# Dart pub workspace — resolves all member packages together so they share one
+# lockfile and reference each other by path. Melos drives lifecycle scripts.
+workspace:
+  - packages/forge_core
+  - packages/forge_client
+  - packages/forge_ui
+
+dev_dependencies:
+  melos: ^6.3.2

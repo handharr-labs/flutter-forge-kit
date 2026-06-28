@@ -1,0 +1,22 @@
+# Dart / Flutter
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+pubspec_overrides.yaml
+
+# Melos
+.melos_tool/
+
+# IDE
+.idea/
+*.iml
+
+# macOS
+.DS_Store
+
+# Local-only: all docs + Claude tooling (kept out of the public repo).
+# No trailing slash so the `docs` symlink itself is ignored, not just a dir.
+docs
+.claude

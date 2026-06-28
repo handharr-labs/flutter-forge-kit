@@ -1,0 +1,27 @@
+name: flutter_forge_kit
+
+packages:
+  - packages/**
+
+command:
+  bootstrap:
+    # Use the Dart pub workspace resolver (shared lockfile at the root).
+    usePubspecOverrides: true
+
+scripts:
+  analyze:
+    description: Run `flutter analyze` across every package.
+    exec: flutter analyze
+    packageFilters:
+      flutter: true
+  analyze:dart:
+    description: Run `dart analyze` across pure-Dart packages.
+    exec: dart analyze
+    packageFilters:
+      flutter: false
+  test:
+    description: Run tests across every package that has them.
+    run: melos exec --dir-exists=test -- flutter test
+  format:
+    description: Format all Dart sources.
+    exec: dart format .
