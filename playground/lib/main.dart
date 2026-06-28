@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:forge_ui/forge_ui.dart';
+
+import 'home_screen.dart';
 
 void main() => runApp(const PlaygroundApp());
 
-/// The playground owns no UI of its own. It boots a [MaterialApp] and hands the
-/// whole screen to the design system's [ForgeUICatalog].
 class PlaygroundApp extends StatelessWidget {
   const PlaygroundApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Forge Kit Playground',
       debugShowCheckedModeBanner: false,
-      home: ForgeUICatalog(),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1A1A2E)),
+        useMaterial3: true,
+      ),
+      home: const HomeScreen(),
     );
   }
 }
