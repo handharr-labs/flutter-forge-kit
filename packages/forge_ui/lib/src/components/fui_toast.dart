@@ -112,7 +112,7 @@ class _FUIToastViewState extends State<_FUIToastView>
                 if (widget.icon != null ||
                     widget.status != FUIStatus.neutral) ...[
                   Icon(
-                    widget.icon ?? Icons.info_outline,
+                    widget.icon ?? FUIIcons.info,
                     size: 20,
                     color: colors.solid,
                   ),

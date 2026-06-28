@@ -92,7 +92,7 @@ class _Step extends StatelessWidget {
                 border: Border.all(color: nodeColor, width: 2),
               ),
               child: done
-                  ? Icon(Icons.check,
+                  ? Icon(FUIIcons.check,
                       size: 14, color: fui.resolve(fui.colors.onPrimary))
                   : Text(
                       '${index + 1}',

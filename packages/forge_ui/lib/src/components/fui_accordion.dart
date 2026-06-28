@@ -69,7 +69,7 @@ class _FUIAccordionState extends State<FUIAccordion>
                   AnimatedRotation(
                     turns: _expanded ? 0.5 : 0,
                     duration: const Duration(milliseconds: 200),
-                    child: Icon(Icons.keyboard_arrow_down,
+                    child: Icon(FUIIcons.chevronDown,
                         color: fui.resolve(fui.colors.textSecondary)),
                   ),
                 ],

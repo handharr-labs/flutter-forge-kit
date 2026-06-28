@@ -116,7 +116,7 @@ class FUISelect<T> extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Icon(Icons.keyboard_arrow_down,
+                  Icon(FUIIcons.chevronDown,
                       size: 20, color: fui.resolve(fui.colors.textSecondary)),
                 ],
               ),

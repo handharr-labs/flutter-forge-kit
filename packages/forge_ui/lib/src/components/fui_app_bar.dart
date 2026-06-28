@@ -129,7 +129,7 @@ class FUIAppBar extends StatelessWidget implements PreferredSizeWidget {
       return SizedBox(width: fui.spacing.sm);
     }
     return FUIIconButton(
-      icon: Icons.arrow_back,
+      icon: FUIIcons.back,
       onPressed: onBack ?? () => Navigator.maybePop(context),
     );
   }
@@ -215,7 +215,7 @@ class _SearchField extends StatelessWidget {
           hintText: hint,
           hintStyle: fui.typography.bodySm
               .copyWith(color: fui.resolve(fui.colors.textSubtle)),
-          prefixIcon: Icon(Icons.search,
+          prefixIcon: Icon(FUIIcons.search,
               size: 20, color: fui.resolve(fui.colors.textSecondary)),
           contentPadding: EdgeInsets.symmetric(vertical: fui.spacing.sm),
           border: OutlineInputBorder(

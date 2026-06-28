@@ -115,7 +115,7 @@ class FUIBottomSheet extends StatelessWidget {
                     if (c.showClose)
                       GestureDetector(
                         onTap: () => Navigator.of(context).maybePop(),
-                        child: Icon(Icons.close,
+                        child: Icon(FUIIcons.close,
                             size: 20,
                             color: fui.resolve(fui.colors.textSubtle)),
                       ),

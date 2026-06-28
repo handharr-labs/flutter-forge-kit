@@ -76,9 +76,9 @@ class FUICheckbox extends StatelessWidget {
     final color = fui.resolve(fui.colors.onPrimary);
     switch (state) {
       case FUICheckboxState.checked:
-        return Icon(Icons.check, size: 16, color: color);
+        return Icon(FUIIcons.check, size: 16, color: color);
       case FUICheckboxState.indeterminate:
-        return Icon(Icons.remove, size: 16, color: color);
+        return Icon(FUIIcons.remove, size: 16, color: color);
       case FUICheckboxState.unchecked:
         return null;
     }

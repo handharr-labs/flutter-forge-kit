@@ -2,6 +2,21 @@
 
 All notable changes to `forge_ui` are documented here.
 
+## Unreleased
+
+### Added
+- `FUIIcons` — the kit's curated icon vocabulary. Semantic, brand-controlled
+  glyph constants (`FUIIcons.search`, `FUIIcons.chevronDown`, …) so call sites
+  no longer reach into Flutter's `Icons.*` directly — the same token-first
+  discipline already applied to colors and spacing. Backed by Material glyphs
+  today (no assets), repointable to a custom icon font later without touching a
+  single call site. Exported via `fui_tokens.dart`; demoed in a new catalog
+  **Iconography** section.
+
+### Changed
+- Migrated every `Icons.*` usage inside the package (41 call sites across 10
+  files — both internal widget glyphs and catalog examples) to `FUIIcons.*`.
+
 ## 0.1.0
 
 First real cut of the token-first design system — the Flutter counterpart of the

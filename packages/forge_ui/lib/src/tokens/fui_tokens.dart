@@ -8,6 +8,7 @@ import 'fui_typography.dart';
 
 export 'fui_color.dart';
 export 'fui_colors.dart';
+export 'fui_icons.dart';
 export 'fui_radii.dart';
 export 'fui_spacing.dart';
 export 'fui_typography.dart';

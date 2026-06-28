@@ -85,7 +85,7 @@ class _ForgeUICatalogState extends State<ForgeUICatalog> {
           actions: [
             IconButton(
               tooltip: isDark ? 'Switch to light' : 'Switch to dark',
-              icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+              icon: Icon(isDark ? FUIIcons.lightMode : FUIIcons.darkMode),
               onPressed: _toggleBrightness,
             ),
           ],
@@ -94,6 +94,7 @@ class _ForgeUICatalogState extends State<ForgeUICatalog> {
           padding: EdgeInsets.all(tokens.spacing.lg),
           children: const [
             _Section(title: 'Foundations', child: _FoundationsDemo()),
+            _Section(title: 'Iconography', child: _IconographyDemo()),
             _Section(title: 'Buttons', child: _ButtonsDemo()),
             _Section(title: 'Typography', child: _TypographyDemo()),
             _Section(title: 'Inputs', child: _InputsDemo()),
@@ -189,6 +190,69 @@ class _FoundationsDemo extends StatelessWidget {
   }
 }
 
+// ────────────────────────────────────────────────────────── Iconography ──
+
+class _IconographyDemo extends StatelessWidget {
+  const _IconographyDemo();
+
+  static const _icons = <(String, IconData)>[
+    ('add', FUIIcons.add),
+    ('remove', FUIIcons.remove),
+    ('close', FUIIcons.close),
+    ('check', FUIIcons.check),
+    ('edit', FUIIcons.edit),
+    ('delete', FUIIcons.delete),
+    ('share', FUIIcons.share),
+    ('search', FUIIcons.search),
+    ('tune', FUIIcons.tune),
+    ('upload', FUIIcons.upload),
+    ('moreVertical', FUIIcons.moreVertical),
+    ('back', FUIIcons.back),
+    ('chevronRight', FUIIcons.chevronRight),
+    ('chevronDown', FUIIcons.chevronDown),
+    ('home', FUIIcons.home),
+    ('person', FUIIcons.person),
+    ('notifications', FUIIcons.notifications),
+    ('mail', FUIIcons.mail),
+    ('inbox', FUIIcons.inbox),
+    ('bookmark', FUIIcons.bookmark),
+    ('favorite', FUIIcons.favorite),
+    ('lock', FUIIcons.lock),
+    ('wifi', FUIIcons.wifi),
+    ('bolt', FUIIcons.bolt),
+    ('success', FUIIcons.success),
+    ('info', FUIIcons.info),
+    ('warning', FUIIcons.warning),
+    ('error', FUIIcons.error),
+    ('lightMode', FUIIcons.lightMode),
+    ('darkMode', FUIIcons.darkMode),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    final fui = FUITheme.of(context);
+    return Wrap(
+      spacing: fui.spacing.md,
+      runSpacing: fui.spacing.md,
+      children: [
+        for (final (name, icon) in _icons)
+          SizedBox(
+            width: 72,
+            child: Column(
+              children: [
+                FUIIcon(icon),
+                SizedBox(height: fui.spacing.xs),
+                FUIText(name,
+                    variant: FUITextVariant.caption,
+                    color: FUITextColor.secondary),
+              ],
+            ),
+          ),
+      ],
+    );
+  }
+}
+
 // ───────────────────────────────────────────────────────────── Buttons ──
 
 class _ButtonsDemo extends StatelessWidget {
@@ -228,7 +292,7 @@ class _ButtonsDemo extends StatelessWidget {
         ),
         FUIButton(
           configuration: const FUIButtonConfiguration(
-              label: 'With icon', icon: Icons.bolt),
+              label: 'With icon', icon: FUIIcons.bolt),
           onPressed: () {},
         ),
         FUIButton(
@@ -293,7 +357,7 @@ class _InputsDemo extends StatelessWidget {
             label: 'Email',
             hint: 'you@example.com',
             helperText: 'We never share your address.',
-            prefixIcon: Icons.mail_outline,
+            prefixIcon: FUIIcons.mail,
           ),
         ),
         SizedBox(height: fui.spacing.lg),
@@ -303,7 +367,7 @@ class _InputsDemo extends StatelessWidget {
             hint: '••••••••',
             obscureText: true,
             errorText: 'Password is too short.',
-            prefixIcon: Icons.lock_outline,
+            prefixIcon: FUIIcons.lockOutline,
           ),
         ),
         SizedBox(height: fui.spacing.lg),
@@ -408,7 +472,7 @@ class _StatusDemo extends StatelessWidget {
             SizedBox(width: fui.spacing.md),
             const FUIBadge.dot(status: FUIStatus.success),
             SizedBox(width: fui.spacing.md),
-            FUIChip(label: 'Filter', icon: Icons.tune, onTap: () {}),
+            FUIChip(label: 'Filter', icon: FUIIcons.tune, onTap: () {}),
             SizedBox(width: fui.spacing.sm),
             FUIChip(label: 'Selected', selected: true, onTap: () {}),
           ],
@@ -502,7 +566,7 @@ class _ContainersDemo extends StatelessWidget {
                     name: 'Grace Hopper', size: FUIAvatarSize.sm),
                 title: 'Grace Hopper',
                 subtitle: 'grace@forge.dev',
-                trailing: const Icon(Icons.chevron_right),
+                trailing: const Icon(FUIIcons.chevronRight),
                 onTap: () {},
               ),
             ],
@@ -541,8 +605,8 @@ class _NavigationDemoState extends State<_NavigationDemo> {
               subtitle: '3 unread',
               showBack: false,
               actions: [
-                FUIIconButton(icon: Icons.search, onPressed: () {}),
-                FUIIconButton(icon: Icons.more_vert, onPressed: () {}),
+                FUIIconButton(icon: FUIIcons.search, onPressed: () {}),
+                FUIIconButton(icon: FUIIcons.moreVertical, onPressed: () {}),
               ],
             ),
           ),
@@ -550,21 +614,21 @@ class _NavigationDemoState extends State<_NavigationDemo> {
         SizedBox(height: fui.spacing.lg),
         Row(
           children: [
-            FUIIconButton(icon: Icons.favorite_border, onPressed: () {}),
+            FUIIconButton(icon: FUIIcons.favorite, onPressed: () {}),
             SizedBox(width: fui.spacing.sm),
             FUIIconButton(
-              icon: Icons.bookmark_border,
+              icon: FUIIcons.bookmark,
               variant: FUIIconButtonVariant.tonal,
               onPressed: () {},
             ),
             SizedBox(width: fui.spacing.sm),
             FUIIconButton(
-              icon: Icons.add,
+              icon: FUIIcons.add,
               variant: FUIIconButtonVariant.filled,
               onPressed: () {},
             ),
             SizedBox(width: fui.spacing.sm),
-            const FUIIconButton(icon: Icons.lock, isEnabled: false),
+            const FUIIconButton(icon: FUIIcons.lock, isEnabled: false),
           ],
         ),
         SizedBox(height: fui.spacing.lg),
@@ -609,17 +673,17 @@ class _OverlaysDemo extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   FUIListTile(
-                    leading: const FUIIcon(Icons.share),
+                    leading: const FUIIcon(FUIIcons.share),
                     title: 'Share',
                     onTap: () => Navigator.of(context).pop(),
                   ),
                   FUIListTile(
-                    leading: const FUIIcon(Icons.edit),
+                    leading: const FUIIcon(FUIIcons.edit),
                     title: 'Edit',
                     onTap: () => Navigator.of(context).pop(),
                   ),
                   FUIListTile(
-                    leading: const FUIIcon(Icons.delete_outline),
+                    leading: const FUIIcon(FUIIcons.delete),
                     title: 'Delete',
                     onTap: () => Navigator.of(context).pop(),
                   ),
@@ -688,14 +752,14 @@ class _ListRowsDemoState extends State<_ListRowsDemo> {
           FUIToggleListTile(
             title: 'Wi-Fi only',
             subtitle: 'Sync over Wi-Fi to save data',
-            leading: const FUIIcon(Icons.wifi),
+            leading: const FUIIcon(FUIIcons.wifi),
             value: _wifi,
             onChanged: (v) => setState(() => _wifi = v),
           ),
           const FUIDivider(),
           FUICheckboxListTile(
             title: 'Auto-backup',
-            leading: const FUIIcon(Icons.cloud_upload_outlined),
+            leading: const FUIIcon(FUIIcons.upload),
             value: _backup,
             onChanged: (v) => setState(() => _backup = v),
           ),
@@ -866,22 +930,22 @@ class _AppShellDemoState extends State<_AppShellDemo> {
               onTap: (i) => setState(() => _tab = i),
               items: const [
                 FUIBottomNavItem(
-                  icon: Icons.home_outlined,
-                  activeIcon: Icons.home,
+                  icon: FUIIcons.homeOutline,
+                  activeIcon: FUIIcons.home,
                   label: 'Home',
                 ),
                 FUIBottomNavItem(
-                  icon: Icons.search,
+                  icon: FUIIcons.search,
                   label: 'Search',
                 ),
                 FUIBottomNavItem(
-                  icon: Icons.notifications_outlined,
-                  activeIcon: Icons.notifications,
+                  icon: FUIIcons.notificationsOutline,
+                  activeIcon: FUIIcons.notifications,
                   label: 'Alerts',
                 ),
                 FUIBottomNavItem(
-                  icon: Icons.person_outline,
-                  activeIcon: Icons.person,
+                  icon: FUIIcons.personOutline,
+                  activeIcon: FUIIcons.person,
                   label: 'Profile',
                 ),
               ],
@@ -910,7 +974,7 @@ class _BlankSlateDemo extends StatelessWidget {
       child: SizedBox(
         height: 320,
         child: FUIBlankSlate(
-          icon: Icons.inbox_outlined,
+          icon: FUIIcons.inbox,
           title: 'No messages yet',
           message: 'When you receive messages, they will show up here.',
           actionLabel: 'Refresh',

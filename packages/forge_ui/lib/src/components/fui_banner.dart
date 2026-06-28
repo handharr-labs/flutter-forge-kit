@@ -80,7 +80,7 @@ class FUIBanner extends StatelessWidget {
             SizedBox(width: fui.spacing.sm),
             GestureDetector(
               onTap: onDismiss,
-              child: Icon(Icons.close,
+              child: Icon(FUIIcons.close,
                   size: 18, color: fui.resolve(fui.colors.textSubtle)),
             ),
           ],
@@ -92,14 +92,14 @@ class FUIBanner extends StatelessWidget {
   IconData _defaultIcon(FUIStatus status) {
     switch (status) {
       case FUIStatus.success:
-        return Icons.check_circle_outline;
+        return FUIIcons.success;
       case FUIStatus.warning:
-        return Icons.warning_amber_outlined;
+        return FUIIcons.warning;
       case FUIStatus.danger:
-        return Icons.error_outline;
+        return FUIIcons.error;
       case FUIStatus.info:
       case FUIStatus.neutral:
-        return Icons.info_outline;
+        return FUIIcons.info;
     }
   }
 }

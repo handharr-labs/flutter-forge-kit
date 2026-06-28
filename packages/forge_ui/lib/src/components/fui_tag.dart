@@ -52,7 +52,7 @@ class FUITag extends StatelessWidget {
             SizedBox(width: fui.spacing.xs),
             GestureDetector(
               onTap: onRemove,
-              child: Icon(Icons.close, size: 14, color: fg),
+              child: Icon(FUIIcons.close, size: 14, color: fg),
             ),
           ],
         ],
