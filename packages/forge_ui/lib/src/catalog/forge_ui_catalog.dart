@@ -95,6 +95,12 @@ class _ForgeUICatalogState extends State<ForgeUICatalog> {
           title: const Text('Forge UI Catalog'),
           backgroundColor: tokens.colors.primary.resolve(_brightness),
           foregroundColor: tokens.colors.onPrimary.resolve(_brightness),
+          leading: Navigator.canPop(context)
+              ? IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () => Navigator.of(context).pop(),
+                )
+              : null,
           actions: [
             IconButton(
               tooltip: isDark ? 'Switch to light' : 'Switch to dark',
