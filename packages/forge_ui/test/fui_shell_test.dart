@@ -60,4 +60,20 @@ void main() {
     await tester.tap(find.text('Refresh'));
     expect(acted, isTrue);
   });
+
+  testWidgets('FUIBlankSlate illustration replaces the default icon',
+      (tester) async {
+    await tester.pumpWidget(
+      _host(
+        const FUIBlankSlate(
+          icon: Icons.inbox_outlined,
+          title: 'Nothing here',
+          illustration: Text('🎨', key: Key('art')),
+        ),
+      ),
+    );
+
+    expect(find.byKey(const Key('art')), findsOneWidget);
+    expect(find.byIcon(Icons.inbox_outlined), findsNothing);
+  });
 }
