@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import 'fui_checkbox.dart';
+import '../atoms/fui_checkbox.dart';
 import 'fui_list_tile.dart';
 
 /// A list row pairing a title/subtitle with a trailing [FUICheckbox]. Tapping

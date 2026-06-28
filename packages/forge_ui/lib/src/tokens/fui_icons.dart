@@ -30,6 +30,7 @@ abstract final class FUIIcons {
 
   // Navigation / direction
   static const IconData back = Icons.arrow_back;
+  static const IconData chevronLeft = Icons.chevron_left;
   static const IconData chevronRight = Icons.chevron_right;
   static const IconData chevronDown = Icons.keyboard_arrow_down;
 
@@ -54,6 +55,11 @@ abstract final class FUIIcons {
   static const IconData info = Icons.info_outline;
   static const IconData warning = Icons.warning_amber_outlined;
   static const IconData error = Icons.error_outline;
+
+  // Media
+  static const IconData image = Icons.image_outlined;
+  static const IconData imageBroken = Icons.broken_image_outlined;
+  static const IconData file = Icons.insert_drive_file_outlined;
 
   // Theme toggle
   static const IconData lightMode = Icons.light_mode;

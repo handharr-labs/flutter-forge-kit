@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../tokens/fui_tokens.dart';
-import 'fui_status.dart';
+import '../tokens/fui_status.dart';
 
 /// A pill label tinted by a [FUIStatus] family, with an optional leading icon
 /// and a removable variant.

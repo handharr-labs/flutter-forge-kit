@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import 'fui_list_tile.dart';
-import 'fui_switch.dart';
+import '../atoms/fui_switch.dart';
 
 /// A list row pairing a title/subtitle with a trailing [FUISwitch] — the
 /// canonical settings row. Tapping anywhere on the row flips the switch.

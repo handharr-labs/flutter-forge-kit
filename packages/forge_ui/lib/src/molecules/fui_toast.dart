@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../tokens/fui_tokens.dart';
-import 'fui_status.dart';
+import '../tokens/fui_status.dart';
 
 /// Shows a transient toast near the bottom of the screen. Inserts an overlay
 /// entry (re-providing the ambient [FUITheme]) that fades in, waits [duration],

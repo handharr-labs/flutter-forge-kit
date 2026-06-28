@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import 'fui_list_tile.dart';
-import 'fui_radio.dart';
+import '../atoms/fui_radio.dart';
 
 /// A list row pairing a title/subtitle with a trailing [FUIRadio]. Selected when
 /// [value] == [groupValue]; tapping the row selects it.

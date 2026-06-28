@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../tokens/fui_tokens.dart';
-import 'fui_button.dart';
+import '../atoms/fui_button.dart';
 
 /// An icon-only empty / zero-state: a tinted icon, a title, an optional message,
 /// and an optional primary action. (Illustration assets are a future tranche;

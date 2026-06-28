@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../tokens/fui_tokens.dart';
-import 'fui_icon_button.dart';
+import '../atoms/fui_icon_button.dart';
 
 enum _FUIAppBarKind { text, logo, search }
 

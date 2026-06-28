@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../tokens/fui_tokens.dart';
-import 'fui_status.dart';
+import '../tokens/fui_status.dart';
 
 /// Configuration for [FUIBanner] — an inline alert message.
 @immutable

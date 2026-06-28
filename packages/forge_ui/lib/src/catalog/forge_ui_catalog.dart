@@ -1,41 +1,54 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
-import '../components/fui_accordion.dart';
-import '../components/fui_app_bar.dart';
-import '../components/fui_avatar.dart';
-import '../components/fui_badge.dart';
-import '../components/fui_banner.dart';
-import '../components/fui_blank_slate.dart';
-import '../components/fui_bottom_nav_bar.dart';
-import '../components/fui_bottom_sheet.dart';
-import '../components/fui_button.dart';
-import '../components/fui_card.dart';
-import '../components/fui_checkbox.dart';
-import '../components/fui_checkbox_list_tile.dart';
-import '../components/fui_chip.dart';
-import '../components/fui_dialog.dart';
-import '../components/fui_divider.dart';
-import '../components/fui_icon.dart';
-import '../components/fui_icon_button.dart';
-import '../components/fui_list_tile.dart';
-import '../components/fui_page_control.dart';
-import '../components/fui_progress_indicator.dart';
-import '../components/fui_radio.dart';
-import '../components/fui_radio_list_tile.dart';
-import '../components/fui_segmented_control.dart';
-import '../components/fui_select.dart';
-import '../components/fui_shimmer.dart';
-import '../components/fui_slider.dart';
-import '../components/fui_status.dart';
-import '../components/fui_stepper.dart';
-import '../components/fui_switch.dart';
-import '../components/fui_toggle_list_tile.dart';
-import '../components/fui_tabs.dart';
-import '../components/fui_tag.dart';
-import '../components/fui_text.dart';
-import '../components/fui_text_field.dart';
-import '../components/fui_toast.dart';
-import '../components/fui_tooltip.dart';
+import '../organisms/fui_accordion.dart';
+import '../organisms/fui_app_bar.dart';
+import '../atoms/fui_avatar.dart';
+import '../atoms/fui_badge.dart';
+import '../molecules/fui_banner.dart';
+import '../organisms/fui_blank_slate.dart';
+import '../organisms/fui_bottom_nav_bar.dart';
+import '../organisms/fui_bottom_sheet.dart';
+import '../organisms/fui_calendar.dart';
+import '../organisms/fui_context_menu.dart';
+import '../organisms/fui_country_picker.dart';
+import '../organisms/fui_stories.dart';
+import '../atoms/fui_button.dart';
+import '../atoms/fui_fab.dart';
+import '../atoms/fui_otp_field.dart';
+import '../atoms/fui_search_field.dart';
+import '../molecules/fui_chat_bubble.dart';
+import '../molecules/fui_file_upload.dart';
+import '../molecules/fui_timeline.dart';
+import '../molecules/fui_card.dart';
+import '../atoms/fui_checkbox.dart';
+import '../molecules/fui_checkbox_list_tile.dart';
+import '../molecules/fui_chip.dart';
+import '../organisms/fui_dialog.dart';
+import '../atoms/fui_divider.dart';
+import '../atoms/fui_icon.dart';
+import '../atoms/fui_icon_button.dart';
+import '../atoms/fui_image.dart';
+import '../molecules/fui_list_tile.dart';
+import '../molecules/fui_page_control.dart';
+import '../atoms/fui_progress_indicator.dart';
+import '../atoms/fui_radio.dart';
+import '../molecules/fui_radio_list_tile.dart';
+import '../molecules/fui_segmented_control.dart';
+import '../molecules/fui_select.dart';
+import '../atoms/fui_shimmer.dart';
+import '../atoms/fui_slider.dart';
+import '../tokens/fui_status.dart';
+import '../molecules/fui_stepper.dart';
+import '../atoms/fui_switch.dart';
+import '../molecules/fui_toggle_list_tile.dart';
+import '../organisms/fui_tabs.dart';
+import '../atoms/fui_tag.dart';
+import '../atoms/fui_text.dart';
+import '../atoms/fui_text_field.dart';
+import '../molecules/fui_toast.dart';
+import '../atoms/fui_tooltip.dart';
 import '../tokens/fui_tokens.dart';
 
 /// A self-contained gallery of every `FUI` component and token, owned by the
@@ -108,6 +121,15 @@ class _ForgeUICatalogState extends State<ForgeUICatalog> {
             _Section(title: 'Pickers · disclosure', child: _PickersDemo()),
             _Section(title: 'App shell', child: _AppShellDemo()),
             _Section(title: 'Empty state', child: _BlankSlateDemo()),
+            _Section(title: 'Imagery', child: _ImageryDemo()),
+            _Section(title: 'Search & code entry', child: _SearchOtpDemo()),
+            _Section(title: 'FAB & context menu', child: _FabMenuDemo()),
+            _Section(title: 'Timeline', child: _TimelineDemo()),
+            _Section(title: 'Chat bubbles', child: _ChatDemo()),
+            _Section(title: 'Calendar', child: _CalendarDemo()),
+            _Section(title: 'File upload', child: _FileUploadDemo()),
+            _Section(title: 'Country picker', child: _CountryPickerDemo()),
+            _Section(title: 'Stories', child: _StoriesDemo()),
             _Section(title: 'Containers', child: _ContainersDemo()),
           ],
         ),
@@ -980,6 +1002,318 @@ class _BlankSlateDemo extends StatelessWidget {
           actionLabel: 'Refresh',
           onAction: () {},
         ),
+      ),
+    );
+  }
+}
+
+// ──────────────────────────────────────────────────────────── Imagery ──
+
+/// A tiny 16×16 PNG embedded as bytes — the kit ships no assets, so the demo
+/// supplies its own [ImageProvider]. Real consumers pass network/asset/file
+/// providers instead.
+final _demoImage = MemoryImage(base64Decode(
+  'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAACV0lEQVR42g3LoYqAMAAA0PucA4PBICwsGAYLhgXBsLDPWLFYVlZWLBbLisUykAmKMBAMgiAIg8HgvuR8/f38cpPwOeVLxtec74A7yI+Cn4hfmN8lfwh/K+5rHiiPjP/9/DYmaea0WbJmzZsdNA42R9GcqLlwc5fNQ5q3anzdBNpE1nyhNUk7p+2StWve7qB1sD2K9kTthdu7bB/SvlXr6zbQNrL2C8IkYk7Fkok1FzsQDoqjECcSFxZ3KR4i3kr4WgQqIhNfkCaRcyqXTK653IF0UB6FPJG8sLxL+RD5VtLXMlAZmfyCMomaU7Vkas3VDpSD6ijUidSF1V2qh6i3Ur5WgarI1Bc6k3Rz2i1Zt+bdDjoHu6PoTtRduLvL7iHdW3W+7gLtIuu+0Jukn9N+yfo173fQO9gfRX+i/sL9XfYP6d+q93UfaB9Z/4XBJMOcDks2rPmwg8HB4SiGEw0XHu5yeMjwVoOvh0CHyIYvaJPoOdVLptdc70A7qI9Cn0hfWN+lfoh+K+1rHaiOTH9hNMk4p+OSjWs+7mB0cDyK8UTjhce7HB8yvtXo6zHQMbLxC5NJpjmdlmxa82kHk4PTUUwnmi483eX0kOmtJl9PgU6RTV8wJjFzapbMrLnZgXHQHIU5kbmwuUvzEPNWxtcmUBOZ+YI1iZ1Tu2R2ze0OrIP2KOyJ7IXtXdqH2LeyvraB2sjsFzaTbHO6Ldm25tsONge3o9hOtF14u8vtIdtbbb7eAt0i277gTOLm1C2ZW3O3A+egOwp3Indhd5fuIe6tnK9doC4y9/cPWIesUL9Cg3kAAAAASUVORK5CYII=',
+));
+
+class _ImageryDemo extends StatelessWidget {
+  const _ImageryDemo();
+
+  @override
+  Widget build(BuildContext context) {
+    final fui = FUITheme.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Radius variants — the kit owns the corner styling; bytes are supplied.
+        Wrap(
+          spacing: fui.spacing.md,
+          runSpacing: fui.spacing.md,
+          children: [
+            for (final radius in FUIImageRadius.values)
+              SizedBox(
+                width: 72,
+                height: 72,
+                child: FUIImage(
+                  image: _demoImage,
+                  configuration: FUIImageConfiguration(radius: radius),
+                  semanticLabel: 'sample ${radius.name}',
+                ),
+              ),
+          ],
+        ),
+        SizedBox(height: fui.spacing.lg),
+        // Aspect ratio + the built-in error fallback (deliberately bad bytes).
+        Row(
+          children: [
+            Expanded(
+              child: FUIImage(
+                image: _demoImage,
+                configuration: const FUIImageConfiguration(
+                  radius: FUIImageRadius.lg,
+                  aspectRatio: 16 / 9,
+                ),
+              ),
+            ),
+            SizedBox(width: fui.spacing.md),
+            SizedBox(
+              width: 72,
+              height: 72,
+              child: FUIImage(
+                image: const AssetImage('does_not_exist.png'),
+                configuration:
+                    const FUIImageConfiguration(radius: FUIImageRadius.lg),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+// ────────────────────────────────────────────────── Search & code entry ──
+
+class _SearchOtpDemo extends StatelessWidget {
+  const _SearchOtpDemo();
+
+  @override
+  Widget build(BuildContext context) {
+    final fui = FUITheme.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const FUISearchField(hint: 'Search components'),
+        SizedBox(height: fui.spacing.lg),
+        FUIText('Verification code', variant: FUITextVariant.label),
+        SizedBox(height: fui.spacing.sm),
+        const Align(
+          alignment: Alignment.centerLeft,
+          child: FUIOtpField(length: 4),
+        ),
+      ],
+    );
+  }
+}
+
+// ──────────────────────────────────────────────────── FAB & context menu ──
+
+class _FabMenuDemo extends StatelessWidget {
+  const _FabMenuDemo();
+
+  @override
+  Widget build(BuildContext context) {
+    final fui = FUITheme.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Wrap(
+          spacing: fui.spacing.md,
+          runSpacing: fui.spacing.md,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            FUIFab(icon: FUIIcons.add, onPressed: () {}),
+            FUIFab(icon: FUIIcons.add, mini: true, onPressed: () {}),
+            FUIFab(
+              icon: FUIIcons.edit,
+              variant: FUIFabVariant.surface,
+              onPressed: () {},
+            ),
+            FUIFab(icon: FUIIcons.add, label: 'Compose', onPressed: () {}),
+          ],
+        ),
+        SizedBox(height: fui.spacing.lg),
+        Builder(
+          builder: (anchorContext) => FUIButton(
+            configuration: const FUIButtonConfiguration(
+              label: 'Open menu',
+              variant: FUIButtonVariant.secondary,
+              icon: FUIIcons.moreVertical,
+            ),
+            onPressed: () => showFUIContextMenu<String>(
+              anchorContext,
+              actions: const [
+                FUIContextMenuAction(
+                    value: 'share', label: 'Share', icon: FUIIcons.share),
+                FUIContextMenuAction(
+                    value: 'edit', label: 'Edit', icon: FUIIcons.edit),
+                FUIContextMenuAction(
+                  value: 'delete',
+                  label: 'Delete',
+                  icon: FUIIcons.delete,
+                  isDestructive: true,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────── Timeline ──
+
+class _TimelineDemo extends StatelessWidget {
+  const _TimelineDemo();
+
+  @override
+  Widget build(BuildContext context) {
+    return const FUITimeline(
+      nodes: [
+        FUITimelineNode(
+          title: 'Order placed',
+          subtitle: 'We received your order',
+          timestamp: 'Mon 09:24',
+          status: FUITimelineStatus.done,
+        ),
+        FUITimelineNode(
+          title: 'Packed',
+          subtitle: 'Your parcel left the warehouse',
+          timestamp: 'Mon 18:10',
+          status: FUITimelineStatus.done,
+        ),
+        FUITimelineNode(
+          title: 'Out for delivery',
+          subtitle: 'Arriving today',
+          status: FUITimelineStatus.active,
+        ),
+        FUITimelineNode(
+          title: 'Delivered',
+          status: FUITimelineStatus.pending,
+        ),
+      ],
+    );
+  }
+}
+
+// ──────────────────────────────────────────────────────── Chat bubbles ──
+
+class _ChatDemo extends StatelessWidget {
+  const _ChatDemo();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Column(
+      children: [
+        FUIChatBubble(
+          message: 'Hey! Are we still on for the design review?',
+          senderName: 'Ada',
+          timestamp: '09:41',
+        ),
+        FUIChatBubble(
+          message: 'Yes — pushing the new tokens now.',
+          sender: FUIChatSender.outbound,
+          timestamp: '09:42',
+          status: FUIChatStatus.read,
+        ),
+      ],
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────── Calendar ──
+
+class _CalendarDemo extends StatelessWidget {
+  const _CalendarDemo();
+
+  @override
+  Widget build(BuildContext context) {
+    return FUICalendar(
+      selectedDate: DateTime.now(),
+      onDateSelected: (_) {},
+    );
+  }
+}
+
+// ──────────────────────────────────────────────────────── File upload ──
+
+class _FileUploadDemo extends StatelessWidget {
+  const _FileUploadDemo();
+
+  @override
+  Widget build(BuildContext context) {
+    return FUIFileUpload(
+      prompt: 'Tap to upload',
+      hint: 'PNG, JPG or PDF up to 10 MB',
+      onTap: () {},
+      onRemove: (_) {},
+      files: const [
+        FUIUploadItem(name: 'brand-guidelines.pdf', size: '2.4 MB'),
+        FUIUploadItem(name: 'hero-shot.png', progress: 0.6),
+        FUIUploadItem(name: 'broken-upload.mov', failed: true),
+      ],
+    );
+  }
+}
+
+// ────────────────────────────────────────────────────── Country picker ──
+
+class _CountryPickerDemo extends StatefulWidget {
+  const _CountryPickerDemo();
+
+  @override
+  State<_CountryPickerDemo> createState() => _CountryPickerDemoState();
+}
+
+class _CountryPickerDemoState extends State<_CountryPickerDemo> {
+  FUICountry _country = kFUICountries.firstWhere((c) => c.isoCode == 'ID');
+
+  @override
+  Widget build(BuildContext context) {
+    final fui = FUITheme.of(context);
+    return Row(
+      children: [
+        Text(_country.flag, style: const TextStyle(fontSize: 22)),
+        SizedBox(width: fui.spacing.sm),
+        Expanded(
+          child: FUIText('${_country.name} (${_country.dialCode})'),
+        ),
+        FUIButton(
+          configuration: const FUIButtonConfiguration(
+            label: 'Change',
+            variant: FUIButtonVariant.secondary,
+          ),
+          onPressed: () async {
+            final picked = await showFUICountryPicker(context);
+            if (picked != null) setState(() => _country = picked);
+          },
+        ),
+      ],
+    );
+  }
+}
+
+// ──────────────────────────────────────────────────────────── Stories ──
+
+class _StoriesDemo extends StatelessWidget {
+  const _StoriesDemo();
+
+  @override
+  Widget build(BuildContext context) {
+    final fui = FUITheme.of(context);
+    Widget slide(String text, FUIColor color) => ColoredBox(
+          color: fui.resolve(color),
+          child: Center(
+            child: FUIText(text,
+                variant: FUITextVariant.titleLg, color: FUITextColor.onPrimary),
+          ),
+        );
+
+    return SizedBox(
+      height: 360,
+      child: FUIStories(
+        segments: [
+          FUIStorySegment(
+              content: slide('Tap right →', fui.colors.primary),
+              duration: const Duration(seconds: 4)),
+          FUIStorySegment(
+              content: slide('← Tap left to go back', fui.colors.success),
+              duration: const Duration(seconds: 4)),
+          FUIStorySegment(
+              content: slide('Hold to pause', fui.colors.info),
+              duration: const Duration(seconds: 4)),
+        ],
       ),
     );
   }

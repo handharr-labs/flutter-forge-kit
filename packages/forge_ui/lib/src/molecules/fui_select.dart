@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../tokens/fui_tokens.dart';
-import 'fui_bottom_sheet.dart';
+import '../organisms/fui_bottom_sheet.dart';
 import 'fui_radio_list_tile.dart';
 
 /// A single option in a [FUISelect].

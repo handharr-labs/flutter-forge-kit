@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../tokens/fui_tokens.dart';
-import 'fui_button.dart';
+import '../atoms/fui_button.dart';
 
 /// Configuration for [FUIDialog].
 @immutable

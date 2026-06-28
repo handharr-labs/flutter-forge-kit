@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import '../tokens/fui_tokens.dart';
-import 'fui_status.dart';
+import '../tokens/fui_status.dart';
 
 /// A small status indicator: either a bare dot or a compact count/label pill.
 class FUIBadge extends StatelessWidget {

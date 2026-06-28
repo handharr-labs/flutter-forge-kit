@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../tokens/fui_tokens.dart';
+import 'fui_tokens.dart';
 
 /// A semantic status used by status-bearing components (badge, tag, banner).
 /// Maps onto the status families in [FUIColors].
