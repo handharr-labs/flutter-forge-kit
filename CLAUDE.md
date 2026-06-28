@@ -53,6 +53,14 @@ A Melos + Dart pub workspace. One root `pubspec.yaml` lists the members; each is
 - `WebSocketClient` is one socket, channel-multiplexed; wrap it for envelope-aware routing
 - Unit tests: mock the layer below, assert on the layer you just built
 
+## Playground
+
+`playground/` is the one runnable host (`forge_kit_playground`), a workspace member that depends on `forge_ui` by path. It owns no UI of its own — `main.dart` boots a `MaterialApp` whose `home` is the design system's `ForgeUICatalog`.
+
+- **The catalog lives in the design system, not the host.** `ForgeUICatalog` (in `forge_ui/lib/src/catalog/`) is the gallery of every `FUI` component + token; hosts just mount it. Add a component → extend the catalog there, and every host picks it up for free.
+- Run: `cd playground && fvm flutter run` (any device), or `fvm flutter run -d chrome` for a quick look.
+- Targets generated: iOS, Android, web.
+
 ## Commands
 
 Toolchain is pinned via `fvm` (Flutter 3.27.x). Prefix with `fvm` if not on PATH.

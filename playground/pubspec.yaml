@@ -1,0 +1,25 @@
+name: forge_kit_playground
+description: >-
+  Runnable host that showcases the Flutter Forge Kit. It owns no UI of its own —
+  it just mounts the design system's ForgeUICatalog.
+publish_to: none
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.6.0 <4.0.0"
+
+resolution: workspace
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  forge_ui: ^0.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true

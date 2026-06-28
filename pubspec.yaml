@@ -14,6 +14,7 @@ workspace:
   - packages/forge_core
   - packages/forge_client
   - packages/forge_ui
+  - playground
 
 dev_dependencies:
   melos: ^6.3.2

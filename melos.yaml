@@ -2,6 +2,7 @@ name: flutter_forge_kit
 
 packages:
   - packages/**
+  - playground
 
 command:
   bootstrap:
